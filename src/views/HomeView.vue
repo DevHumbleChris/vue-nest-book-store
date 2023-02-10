@@ -30,8 +30,8 @@ const openBookModal = () => {
           </div>
           <div class="space-y-2">
             <h2 class="text-2xl sm:text-lg font-bold group-hover:underline group-hover:decoration-indigo-600 group-hover:decoration-2">Child Psychology and Psychiatry</h2>
-            <p class="text-base text-gray-600">David Skuse</p>
-            <p class="text-sm text-indigo-500">Psychology</p>
+            <p class="text-xl sm:text-base text-gray-600">David Skuse</p>
+            <p class="text-lg sm:text-sm text-indigo-500">Psychology</p>
             <div class="space-x-4 hidden hover:block">
               <button class="bg-indigo-600 text-white p-2 rounded-md">Edit</button>
               <button class="bg-red-600 text-white p-2 rounded-md">Delete</button>
