@@ -15,10 +15,11 @@ watchEffect(() => {
     fetchBooks()
 })
 
+
 </script>
 
 <template>
-    <div class="sm:grid sm:grid-cols-2 sm:gap-3 my-6 w-full">
+    <div class="flex flex-col sm:flex-row flex-wrap">
         <SingleBook v-for="book in books" :key="book.id" :book="book" />
     </div>
 </template>

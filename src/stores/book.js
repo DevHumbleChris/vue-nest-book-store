@@ -14,7 +14,14 @@ export const useBookStore = defineStore("book", () => {
   const getBooks = async () => {
     const resp = await instance.get("/books");
     if (resp.data) {
-        books.value = resp.data;
+      books.value = resp.data;
+    }
+  };
+
+  const searchBooks = async (payload) => {
+    const resp = await instance.get(`/books?search=${payload}`);
+    if (resp.data) {
+      books.value = resp.data;
     }
   };
 
@@ -24,5 +31,6 @@ export const useBookStore = defineStore("book", () => {
     editedBook,
     getBooks,
     books,
+    searchBooks,
   };
 });

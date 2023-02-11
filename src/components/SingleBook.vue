@@ -19,15 +19,15 @@ const deleteBook = () => {
 </script>
 
 <template>
-    <div class="space-y-2 group">
+    <div class="space-y-2 group flex-shrink-0 hover:my-3 max-w-sm mr-2">
         <div class="flex space-x-3 text-xl cursor-pointer group">
             <div>
                 <img :src="book.imageURL"
-                    class="object-fit rounded-md hover:shadow-xl group-hover:border group-hover:border-indigo-600" />
+                    class="object-fit rounded-md hover:shadow-xl group-hover:border group-hover:border-indigo-600 max-w-[142px] max-h-[192px] shrink-0" />
             </div>
             <div class="space-y-2">
                 <h2
-                    class="text-2xl sm:text-lg font-bold group-hover:underline group-hover:decoration-indigo-600 group-hover:decoration-2">
+                    class="font-bold group-hover:underline group-hover:decoration-indigo-600 group-hover:decoration-2">
                     {{ book?.title }}
                 </h2>
                 <p class="text-xl sm:text-base text-gray-600">{{ book.author }}</p>

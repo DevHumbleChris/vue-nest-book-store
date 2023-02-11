@@ -13,7 +13,7 @@ const loadBooks = computed(() => {
 })
 </script>
 <template>
-  <main class="mx-auto max-w-xl my-6">
+  <main class="mx-auto max-w-3xl my-6">
     <section class="mx-3 p-4">
       <AddBook />
       <SearchBox />
