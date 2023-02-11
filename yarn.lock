@@ -1512,7 +1512,14 @@ vue-router@^4.1.6:
   dependencies:
     "@vue/devtools-api" "^6.4.5"
 
-vue@^3.2.45:
+vue3-spinner@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/vue3-spinner/-/vue3-spinner-0.0.16.tgz#55931569461c6ec2d412fd4665beecfd219c008b"
+  integrity sha512-7U0+Hra1D+fOGDlQVvXPSpZYABvv7pfLevbddQMK2wZFmsQXwtLnfZ2kijrxcue5HyiRXiv4y7wgEEvqood/Xg==
+  dependencies:
+    vue "^3.2.41"
+
+vue@^3.2.41, vue@^3.2.45:
   version "3.2.47"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.47.tgz#3eb736cbc606fc87038dbba6a154707c8a34cff0"
   integrity sha512-60188y/9Dc9WVrAZeUVSDxRQOZ+z+y5nO2ts9jWXSTkMvayiWxCWOWtBQoYjLeccfXkiiPZWAHcV+WTPhkqJHQ==

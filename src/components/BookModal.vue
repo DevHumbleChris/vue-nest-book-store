@@ -8,6 +8,8 @@ import {
   DialogTitle,
 } from '@headlessui/vue'
 import { useBookModalStore } from '../stores/bookModal';
+import { XCircleIcon } from '@heroicons/vue/24/outline';
+import { instance } from "@/utils/axiosInstance"
 
 const store = useBookModalStore()
 const isOpen = computed(() => {
@@ -21,8 +23,13 @@ const formDetails = ref({
   type: ''
 })
 
-function closeModal() {
+const closeModal = () => {
   store.openBookModal()
+}
+
+const handleSubmit = async () => {
+  const resp = await instance.post('/book/add-new', formDetails.value)
+  console.log(resp.data)
 }
 </script>
 
@@ -41,38 +48,38 @@ function closeModal() {
             leave-to="opacity-0 scale-95">
             <DialogPanel
               class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-              <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
+              <DialogTitle as="h3" class="text-lg text-center font-medium leading-6 text-gray-900">
                 Add New Book.
               </DialogTitle>
-              <form>
+              <XCircleIcon @click="closeModal" class="w-8 absolute top-3 right-3 cursor-pointer text-indigo-700" />
+              <form @submit.prevent="handleSubmit">
                 <div class="space-y-2 my-2">
                   <label for="title" class="block font-medium text-gray-700">Title</label>
                   <input v-model="formDetails.title" type="text" name="title" id="title" autocomplete="off"
-                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none">
+                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none" required>
                 </div>
 
                 <div class="space-y-2 my-2">
                   <label for="type" class="block font-medium text-gray-700">Type</label>
                   <input v-model="formDetails.type" type="text" name="type" id="type" autocomplete="off"
-                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none">
+                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none" required>
                 </div>
 
                 <div class="space-y-2 my-2">
                   <label for="author" class="block font-medium text-gray-700">Author</label>
                   <input v-model="formDetails.author" type="text" name="author" id="author" autocomplete="off"
-                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none">
+                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none" required>
                 </div>
 
                 <div class="space-y-2 my-2">
                   <label for="imageURL" class="block font-medium text-gray-700">Book Image URL</label>
                   <input v-model="formDetails.imageURL" type="text" name="imageURL" id="imageURL" autocomplete="off"
-                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none">
+                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none" required>
                 </div>
 
                 <div class="mt-4">
-                  <button type="button"
-                    class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    @click="closeModal">
+                  <button type="submit"
+                    class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 w-full">
                     SAVE
                   </button>
                 </div>
