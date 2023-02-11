@@ -10,8 +10,10 @@ import {
 import { useBookModalStore } from '../stores/bookModal';
 import { XCircleIcon } from '@heroicons/vue/24/outline';
 import { instance } from "@/utils/axiosInstance"
+import { useBookStore } from '../stores/book';
 
 const store = useBookModalStore()
+const bookStore = useBookStore()
 const isOpen = computed(() => {
   return store.isBookModal
 })
@@ -29,7 +31,16 @@ const closeModal = () => {
 
 const handleSubmit = async () => {
   const resp = await instance.post('/book/add-new', formDetails.value)
-  console.log(resp.data)
+  if (resp.data) {
+    formDetails.value = {
+      title: '',
+      author: '',
+      imageURL: '',
+      type: ''
+    }
+    store.openBookModal()
+    bookStore.getBooks()
+  }
 }
 </script>
 
@@ -56,25 +67,29 @@ const handleSubmit = async () => {
                 <div class="space-y-2 my-2">
                   <label for="title" class="block font-medium text-gray-700">Title</label>
                   <input v-model="formDetails.title" type="text" name="title" id="title" autocomplete="off"
-                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none" required>
+                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none"
+                    required>
                 </div>
 
                 <div class="space-y-2 my-2">
                   <label for="type" class="block font-medium text-gray-700">Type</label>
                   <input v-model="formDetails.type" type="text" name="type" id="type" autocomplete="off"
-                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none" required>
+                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none"
+                    required>
                 </div>
 
                 <div class="space-y-2 my-2">
                   <label for="author" class="block font-medium text-gray-700">Author</label>
                   <input v-model="formDetails.author" type="text" name="author" id="author" autocomplete="off"
-                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none" required>
+                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none"
+                    required>
                 </div>
 
                 <div class="space-y-2 my-2">
                   <label for="imageURL" class="block font-medium text-gray-700">Book Image URL</label>
                   <input v-model="formDetails.imageURL" type="text" name="imageURL" id="imageURL" autocomplete="off"
-                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none" required>
+                    class="mt-1 block w-full rounded-md border-gray-400 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3 border outline-none"
+                    required>
                 </div>
 
                 <div class="mt-4">

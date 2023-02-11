@@ -1,13 +1,20 @@
 <script setup>
 import SingleBook from './SingleBook.vue';
-import { watchEffect, ref } from 'vue';
-import { instance } from '@/utils/axiosInstance'
+import { watchEffect, computed } from 'vue';
+import { useBookStore } from '@/stores/book'
 
-const books = ref(null)
-watchEffect(async () => {
-    const resp = await instance.get('/books')
-    books.value = resp.data
+const store = useBookStore()
+
+const fetchBooks = async () => {
+    store.getBooks()
+}
+const books = computed(() => {
+    return store.books
 })
+watchEffect(() => {
+    fetchBooks()
+})
+
 </script>
 
 <template>
