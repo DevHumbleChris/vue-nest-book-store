@@ -5,6 +5,8 @@ import AddBook from '../components/AddBook.vue';
 // import { DotLoader } from "vue3-spinner";
 import { useBookStore } from '@/stores/book'
 import { computed } from 'vue';
+import BookEdit from '../components/BookEdit.vue';
+import BookDelete from '../components/BookDelete.vue';
 
 const store = useBookStore()
 const books = computed(() => {
@@ -20,6 +22,8 @@ const books = computed(() => {
         <p class="text-2xl text-[#0d05b9] animate-pulse">No Books Found!...</p>
       </div>
       <BooksWrapper v-else />
+      <BookEdit />
+      <BookDelete />
     </section>
   </main>
 </template>

@@ -1,7 +1,5 @@
 <script setup>
 import { computed } from 'vue';
-import BookEdit from './BookEdit.vue';
-import BookDelete from './BookDelete.vue'
 import { useBookModalStore } from '@/stores/bookModal';
 import { useBookStore } from '@/stores/book';
 
@@ -47,7 +45,5 @@ const deleteBook = () => {
             <button @click="deleteBook"
                 class="bg-red-600 text-white p-2 rounded-md w-full hidden group-hover:block">Delete</button>
         </div>
-        <BookEdit />
-        <BookDelete />
     </div>
 </template>
