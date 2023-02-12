@@ -3,9 +3,13 @@ import { ref } from "vue";
 import { instance } from "@/utils/axiosInstance";
 
 export const useBookStore = defineStore("book", () => {
-  const editedBook = ref(null);
+  const selectedBook = ref(null);
   const loadBooks = ref(false);
   const books = ref(null);
+
+  const getSelectedBook = (payload) => {
+    selectedBook.value = payload
+  }
 
   const fnLoadBooks = () => {
     loadBooks.value = !loadBooks.value;
@@ -25,12 +29,26 @@ export const useBookStore = defineStore("book", () => {
     }
   };
 
+  const deleteBook = async (payload) => {
+    try {
+      const resp = await instance.delete(`/book/${payload.id}/delete`);
+      if (resp.data) {
+        getBooks()
+        selectedBook.value = null
+      }
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   return {
     fnLoadBooks,
     loadBooks,
-    editedBook,
+    selectedBook,
     getBooks,
     books,
     searchBooks,
+    getSelectedBook,
+    deleteBook
   };
 });
