@@ -14,8 +14,6 @@ const books = computed(() => {
 watchEffect(() => {
     fetchBooks()
 })
-
-
 </script>
 
 <template>

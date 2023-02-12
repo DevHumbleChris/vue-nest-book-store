@@ -2,14 +2,13 @@
 import SearchBox from '@/components/SearchBox.vue';
 import BooksWrapper from '@/components/BooksWrapper.vue'
 import AddBook from '../components/AddBook.vue';
-import { DotLoader } from "vue3-spinner";
+// import { DotLoader } from "vue3-spinner";
 import { useBookStore } from '@/stores/book'
 import { computed } from 'vue';
 
 const store = useBookStore()
-
-const loadBooks = computed(() => {
-  return store.loadBooks
+const books = computed(() => {
+  return store?.books
 })
 </script>
 <template>
@@ -17,9 +16,8 @@ const loadBooks = computed(() => {
     <section class="mx-3 p-4">
       <AddBook />
       <SearchBox />
-      <div v-if="loadBooks" class="flex space-x-2 items-center justify-center my-12">
-        <DotLoader color="#0d05b9" class="animate-pulse" />
-        <p class="text-2xl text-[#0d05b9] animate-pulse">Loading...</p>
+      <div v-if="books?.length <= 0" class="flex space-x-2 items-center justify-center my-12">
+        <p class="text-2xl text-[#0d05b9] animate-pulse">No Books Found!...</p>
       </div>
       <BooksWrapper v-else />
     </section>
