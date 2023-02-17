@@ -33,6 +33,18 @@ export const useBookStore = defineStore("book", () => {
     }
   };
 
+  const updateBook = async (payload) => {
+    try {
+      const resp = await instance.put(`/book/${payload.id}/update`, payload);
+      if (resp.data) {
+        getBooks()
+        selectedBook.value = null
+      }
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   const deleteBook = async (payload) => {
     try {
       const resp = await instance.delete(`/book/${payload.id}/delete`);
@@ -54,6 +66,7 @@ export const useBookStore = defineStore("book", () => {
     searchBooks,
     getSelectedBook,
     deleteBook,
-    defaultSelectedBook
+    defaultSelectedBook,
+    updateBook
   };
 });

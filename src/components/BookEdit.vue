@@ -96,11 +96,12 @@ watchEffect(() => {
   }
 })
 
-const updateData = () => {
+const updateBook = () => {
   if (!bookUpdateData.value) {
     alert('Specify Atleast One Field')
   } else {
-    console.log(bookUpdateData.value)
+    bookStore.updateBook({...bookUpdateData.value, id: book.value.id})
+    store.openBookEditModal()
   }
 }
 </script>
@@ -148,7 +149,7 @@ const updateData = () => {
                 </div>
               </div>
 
-              <form @submit.prevent="updateData">
+              <form @submit.prevent="updateBook">
                 <div v-for="(bk, index) in selectedDetails" :key="index" class="space-y-2 my-2">
                   <label for="imageURL" class="block font-medium text-gray-700">{{
                     bk
