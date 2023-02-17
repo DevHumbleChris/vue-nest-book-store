@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { instance } from "@/utils/axiosInstance";
+import { toast } from 'vue3-toastify';
 
 export const useBookStore = defineStore("book", () => {
   const selectedBook = ref(null);
@@ -20,17 +21,33 @@ export const useBookStore = defineStore("book", () => {
   };
 
   const getBooks = async () => {
-    const resp = await instance.get("/books");
-    if (resp.data) {
-      books.value = resp.data;
+    try {
+      const resp = await instance.get("/books");
+      if (resp.data) {
+        books.value = resp.data;
+      }
+    } catch (error) {
+      toast(error.message, {
+        type: 'error',
+        theme: 'colored'
+      })
     }
+
   };
 
   const searchBooks = async (payload) => {
-    const resp = await instance.get(`/books?search=${payload}`);
-    if (resp.data) {
-      books.value = resp.data;
+    try {
+      const resp = await instance.get(`/books?search=${payload}`);
+      if (resp.data) {
+        books.value = resp.data;
+      }
+    } catch(error) {
+      toast(error.message, {
+        type: 'error',
+        theme: 'colored'
+      })
     }
+
   };
 
   const updateBook = async (payload) => {
@@ -39,9 +56,16 @@ export const useBookStore = defineStore("book", () => {
       if (resp.data) {
         getBooks()
         selectedBook.value = null
+        toast('Book Updated Successfully!', {
+          type: 'error',
+          theme: 'colored'
+        })
       }
     } catch (error) {
-      alert(error.message)
+      toast(error.message, {
+        type: 'error',
+        theme: 'colored'
+      })
     }
   }
 
@@ -51,9 +75,16 @@ export const useBookStore = defineStore("book", () => {
       if (resp.data) {
         getBooks()
         selectedBook.value = null
+        toast('Book Deleted Successfully!', {
+          type: 'error',
+          theme: 'colored'
+        })
       }
     } catch (error) {
-      alert(error.message)
+      toast(error.message, {
+        type: 'error',
+        theme: 'colored'
+      })
     }
   }
 
