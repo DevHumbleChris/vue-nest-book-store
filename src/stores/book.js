@@ -11,6 +11,10 @@ export const useBookStore = defineStore("book", () => {
     selectedBook.value = payload
   }
 
+  const defaultSelectedBook = () => {
+    selectedBook.value = null
+  }
+
   const fnLoadBooks = () => {
     loadBooks.value = !loadBooks.value;
   };
@@ -49,6 +53,7 @@ export const useBookStore = defineStore("book", () => {
     books,
     searchBooks,
     getSelectedBook,
-    deleteBook
+    deleteBook,
+    defaultSelectedBook
   };
 });
