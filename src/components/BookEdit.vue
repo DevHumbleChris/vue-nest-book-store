@@ -66,14 +66,23 @@ const toggleClassCheckIcon = (selected) => {
   return isSelected.length > 0 ? "w-5 block" : "w-5 hidden";
 };
 
-const bookModel = computed(() => {
-  return {
-    title: book?.value?.title,
-    author: book?.value?.author,
-    type: book?.value?.type,
-    image: book?.value?.imageURL,
-  };
+const bookModel = ref({
+  title: book?.value?.title,
+  author: book?.value?.author,
+  type: book?.value?.type,
+  image: book?.value?.imageURL,
 })
+watch(book, (newValue) => {
+  if (newValue) {
+    bookModel.value = {
+      title: newValue?.title,
+      author: newValue?.author,
+      type: newValue?.type,
+      image: newValue?.imageURL,
+    }
+  }
+})
+
 const bookUpdateData = ref(null)
 watchEffect(() => {
   if (selectedDetails?.value.length > 0) {
@@ -88,7 +97,7 @@ watchEffect(() => {
 })
 
 const updateData = () => {
-  if(!bookUpdateData.value) {
+  if (!bookUpdateData.value) {
     alert('Specify Atleast One Field')
   } else {
     console.log(bookUpdateData.value)
