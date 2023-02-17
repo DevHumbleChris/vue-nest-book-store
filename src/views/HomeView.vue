@@ -7,14 +7,8 @@ import { useBookStore } from '@/stores/book'
 import { computed } from 'vue';
 import BookEdit from '../components/BookEdit.vue';
 import BookDelete from '../components/BookDelete.vue';
-import { useBookModalStore } from '../stores/bookModal';
 
 const store = useBookStore()
-const bookModal = useBookModalStore()
-
-const isBookEditModal = computed(() => {
-  return bookModal.isBookEditModal
-})
 const books = computed(() => {
   return store?.books
 })
@@ -29,7 +23,7 @@ const books = computed(() => {
         <p class="text-2xl text-[#0d05b9] animate-pulse">No Books Found!...</p>
       </div>
       <BooksWrapper v-else />
-      <BookEdit v-if="isBookEditModal" />
+      <BookEdit/>
       <BookDelete />
     </section>
   </main>

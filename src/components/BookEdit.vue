@@ -60,15 +60,15 @@ const toggleClassCheckIcon = (selected) => {
 };
 
 const bookModel = ref({
-  title: book?.value.title || "",
-  author: book?.value.author || "",
-  type: book?.value.type || "",
-  image: book?.value.imageURL || "",
+  title: book?.value?.title || "",
+  author: book?.value?.author || "",
+  type: book?.value?.type || "",
+  image: book?.value?.imageURL || "",
 });
 </script>
 
 <template>
-  <TransitionRoot appear v-show="isOpen" as="template">
+  <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" @close="closeModal" class="relative z-10">
       <TransitionChild
         as="template"

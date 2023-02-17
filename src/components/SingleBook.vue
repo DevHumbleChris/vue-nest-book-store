@@ -25,7 +25,7 @@ const deleteBook = () => {
 </script>
 
 <template>
-    <div class="space-y-2 group flex-shrink-0 hover:my-3 max-w-sm mr-2">
+    <div class="space-y-2 group flex-shrink-0 hover:my-3 max-w-xs mr-2">
         <div class="flex space-x-3 text-xl cursor-pointer group">
             <div>
                 <img :src="book.imageURL"
