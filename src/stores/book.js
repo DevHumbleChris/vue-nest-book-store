@@ -57,7 +57,7 @@ export const useBookStore = defineStore("book", () => {
         getBooks()
         selectedBook.value = null
         toast('Book Updated Successfully!', {
-          type: 'error',
+          type: 'info',
           theme: 'colored'
         })
       }
@@ -76,7 +76,7 @@ export const useBookStore = defineStore("book", () => {
         getBooks()
         selectedBook.value = null
         toast('Book Deleted Successfully!', {
-          type: 'error',
+          type: 'info',
           theme: 'colored'
         })
       }

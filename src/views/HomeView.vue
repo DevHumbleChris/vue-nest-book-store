@@ -4,13 +4,16 @@ import BooksWrapper from '@/components/BooksWrapper.vue'
 import AddBook from '../components/AddBook.vue';
 import { DotLoader } from "vue3-spinner";
 import { useBookStore } from '@/stores/book'
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import BookEdit from '../components/BookEdit.vue';
 import BookDelete from '../components/BookDelete.vue';
 
 const store = useBookStore()
 const books = computed(() => {
   return store?.books
+})
+watch(books, (newBooks) => {
+  console.log(newBooks)
 })
 </script>
 <template>
