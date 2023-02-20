@@ -11,6 +11,7 @@ import { useBookModalStore } from '../stores/bookModal';
 import { XCircleIcon } from '@heroicons/vue/24/outline';
 import { instance } from "@/utils/axiosInstance"
 import { useBookStore } from '../stores/book';
+import { toast } from 'vue3-toastify';
 
 const store = useBookModalStore()
 const bookStore = useBookStore()
@@ -40,6 +41,10 @@ const handleSubmit = async () => {
     }
     store.openBookModal()
     bookStore.getBooks()
+    toast('Book Added Successfully!', {
+      type: 'info',
+      theme: 'colored'
+    })
   }
 }
 </script>

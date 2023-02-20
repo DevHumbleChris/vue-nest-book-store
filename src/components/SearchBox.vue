@@ -18,7 +18,7 @@ watch(searchTerm, () => {
 <template>
     <form class="my-4">
         <div class="bg-white w-full rounded-full p-2 relative">
-          <input v-model="searchTerm" type="text" class="w-full  px-6 py-3 outline-none" placeholder="search book id, author or title">
+          <input v-model="searchTerm" type="text" class="w-full  px-6 py-3 outline-none" placeholder="search book by author, title or type">
           <MagnifyingGlassCircleIcon @click="searchBooks" class="w-10 absolute bg-primary text-indigo-600 rounded-full top-3 right-4 cursor-pointer" />
         </div>
       </form>
