@@ -7,6 +7,7 @@ import { useBookStore } from '@/stores/book'
 import { computed } from 'vue';
 import BookEdit from '../components/BookEdit.vue';
 import BookDelete from '../components/BookDelete.vue';
+import TheFooter from '@/components/TheFooter.vue'
 
 const store = useBookStore()
 const books = computed(() => {
@@ -26,5 +27,6 @@ const books = computed(() => {
       <BookEdit/>
       <BookDelete />
     </section>
+    <TheFooter />
   </main>
 </template>
